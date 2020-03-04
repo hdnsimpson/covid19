@@ -10,6 +10,7 @@ class Cases extends React.Component {
         super(props);
 
         this.state = {
+            token: '',
             activeCases: '',
             suspectedCases: '',
             confirmedCases: '',
@@ -21,45 +22,51 @@ class Cases extends React.Component {
 
     // Load covid data upon page load
     componentDidMount() {
-        const configBearer = {
-            headers: {
-                Authorization: 'Basic Tl9JWUJjTlAwMUZZMElXYk04cnZ3TFNROHNrYTo0MVdYbGVXenJlZmY1YU1EbjBYZENHS0NDR1lh'
+        // Get Access token on page load
+        fetch("https://cors-anywhere.herokuapp.com/https://apigw.nubentos.com:443/token?grant_type=client_credentials", {
+            "method": "POST",
+            "headers": {
+                "authorization": "Basic SEsxVjRfY0tlOGVVeUlUcHlEdnhuU01TRGljYTpKYjQwc0dNcXhmU2NDdEVDemg3djdmV0ttZjBh"
             }
+        })
+            .then(response => response.json())
+            .then(json => this.setState({ token: json.access_token }))
+            .then(() => this.makeApiCalls())
+            .catch(err => {
+                console.log(err);
+            });
+    }
+
+    makeApiCalls() {
+        const auth = 'Bearer ' + this.state.token;
+        const config = {
+            headers: { Authorization: auth }
         };
 
-        // Get Bearer Token
-        axios.post('https://apigw.nubentos.com:443/token?grant_type=client_credentials',
-            configBearer)
-            .then(response => console.log(response));
+        // Get Active Cases
+        axios.get('https://apigw.nubentos.com:443/t/nubentos.com/ncovapi/1.0.0/cases',
+            config)
+            .then(response => this.setState({ activeCases: response.data[0].cases }));
 
-        // const config = {
-        //     headers: { Authorization: 'Bearer b5ff055a-5763-34ad-8f0c-ab1c273b2952' }
-        // };
+        // Get Suspected Cases
+        axios.get('https://apigw.nubentos.com:443/t/nubentos.com/ncovapi/1.0.0/cases/suspected',
+            config)
+            .then(response => this.setState({ suspectedCases: response.data[0].data }));
 
-        // // Get Active Cases
-        // axios.get('https://apigw.nubentos.com:443/t/nubentos.com/ncovapi/1.0.0/cases',
-        //     config)
-        //     .then(response => this.setState({ activeCases: response.data[0].cases }));
+        // Get Confirmed Cases
+        axios.get('https://apigw.nubentos.com:443/t/nubentos.com/ncovapi/1.0.0/cases/confirmed',
+            config)
+            .then(response => this.setState({ confirmedCases: response.data[0].data }));
 
-        // // Get Suspected Cases
-        // axios.get('https://apigw.nubentos.com:443/t/nubentos.com/ncovapi/1.0.0/cases/suspected',
-        //     config)
-        //     .then(response => this.setState({ suspectedCases: response.data[0].data }));
+        // Get Deaths
+        axios.get('https://apigw.nubentos.com:443/t/nubentos.com/ncovapi/1.0.0/deaths',
+            config)
+            .then(response => this.setState({ deaths: response.data[0].data }));
 
-        // // Get Confirmed Cases
-        // axios.get('https://apigw.nubentos.com:443/t/nubentos.com/ncovapi/1.0.0/cases/confirmed',
-        //     config)
-        //     .then(response => this.setState({ confirmedCases: response.data[0].data }));
-
-        // // Get Deaths
-        // axios.get('https://apigw.nubentos.com:443/t/nubentos.com/ncovapi/1.0.0/deaths',
-        //     config)
-        //     .then(response => this.setState({ deaths: response.data[0].data }));
-
-        // // Get Recovered
-        // axios.get('https://apigw.nubentos.com:443/t/nubentos.com/ncovapi/1.0.0/recovered',
-        //     config)
-        //     .then(response => this.setState({ recovered: response.data[0].data }));
+        // Get Recovered
+        axios.get('https://apigw.nubentos.com:443/t/nubentos.com/ncovapi/1.0.0/recovered',
+            config)
+            .then(response => this.setState({ recovered: response.data[0].data }));
     }
 
     getDeathRate() {
