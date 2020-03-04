@@ -1,5 +1,5 @@
 .card {
-    margin: 20px 0;
+    margin: 20px 10px;
     text-align: left;
     width: 100%;
 }
@@ -21,4 +21,14 @@
 
 .right {
     float: right;
+}
+
+.deaths {
+    color: #a01414;
+    font-weight: 600;
+}
+
+.recovered {
+    color: #2b7f07;
+    font-weight: 600;
 }

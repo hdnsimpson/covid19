@@ -122,13 +122,13 @@ class Cases extends React.Component {
                         </Typography>
                         <Typography variant="body1" color="textSecondary" component="div">
                             <div className='cont'>
-                                <p className='left'>Deaths: </p>
+                                <p className='left deaths'>Deaths: </p>
                                 <p className='right'>{this.state.deaths}</p>
                             </div>
                         </Typography>
                         <Typography variant="body1" color="textSecondary" component="div">
                             <div className='cont'>
-                                <p className='left'>Recovered: </p>
+                                <p className='left recovered'>Recovered: </p>
                                 <p className='right'>{this.state.recovered}</p>
                             </div>
                         </Typography>
