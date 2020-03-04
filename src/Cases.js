@@ -4,6 +4,7 @@ import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
 import Tooltip from '@material-ui/core/Tooltip';
+import './Cases.css';
 
 class Cases extends React.Component {
     constructor(props) {
@@ -88,60 +89,87 @@ class Cases extends React.Component {
     render() {
         return (
             <div>
-                <Card>
+                <Card className='card'>
                     <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
+                        <Typography gutterBottom variant="h5" component="h2" className="heading">
                             Cases
                         </Typography>
-                        <Typography variant="body1" color="textSecondary" component="p">
-                            Active Cases: {this.state.activeCases}
+                        <Typography variant="body1" color="textSecondary" component="div">
+                            <div className='cont'>
+                                <p className='left'>Active Cases: </p>
+                                <p className='right'>{this.state.activeCases}</p>
+                            </div>
                         </Typography>
-                        <Typography variant="body1" color="textSecondary" component="p">
-                            Suspected Cases: {this.state.suspectedCases}
+                        <Typography variant="body1" color="textSecondary" component="div">
+                            <div className='cont'>
+                                <p className='left'>Suspected Cases: </p>
+                                <p className='right'>{this.state.suspectedCases}</p>
+                            </div>
                         </Typography>
-                        <Typography variant="body1" color="textSecondary" component="p">
-                            Confirmed Cases: {this.state.confirmedCases}
+                        <Typography variant="body1" color="textSecondary" component="div">
+                            <div className='cont'>
+                                <p className='left'>Confirmed Cases: </p>
+                                <p className='right'>{this.state.confirmedCases}</p>
+                            </div>
                         </Typography>
                     </CardContent>
                 </Card>
 
-                <Card>
+                <Card className='card'>
                     <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
+                        <Typography gutterBottom variant="h5" component="h2" className="heading">
                             Deaths VS Recovered
                         </Typography>
-                        <Typography variant="body1" color="textSecondary" component="p">
-                            Deaths: {this.state.deaths}
+                        <Typography variant="body1" color="textSecondary" component="div">
+                            <div className='cont'>
+                                <p className='left'>Deaths: </p>
+                                <p className='right'>{this.state.deaths}</p>
+                            </div>
                         </Typography>
-                        <Typography variant="body1" color="textSecondary" component="p">
-                            Recovered: {this.state.recovered}
+                        <Typography variant="body1" color="textSecondary" component="div">
+                            <div className='cont'>
+                                <p className='left'>Recovered: </p>
+                                <p className='right'>{this.state.recovered}</p>
+                            </div>
                         </Typography>
                     </CardContent>
                 </Card>
 
-                <Card>
+                <Card className='card'>
                     <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
+                        <Typography gutterBottom variant="h5" component="h2" className="heading">
                             Percentage Statistics
                         </Typography>
                         <Tooltip title='Deaths / World Population'>
-                            <Typography variant="body1" color="textSecondary" component="p">
-                                Approx. Death Rate: {this.getDeathRate()}%
+                            <Typography variant="body1" color="textSecondary" component="div">
+                                <div className='cont'>
+                                    <p className='left'>Approx. Death Rate: </p>
+                                    <p className='right'>{this.getDeathRate()}%</p>
+                                </div>
                             </Typography>
                         </Tooltip>
                         <Tooltip title='Deaths / Confirmed Cases'>
-                            <Typography variant="body1" color="textSecondary" component="p">
-                                Approx. Mortality Rate: {this.getMortalityRate()}%
+                            <Typography variant="body1" color="textSecondary" component="div">
+                                <div className='cont'>
+                                    <p className='left'>Approx. Mortality Rate: </p>
+                                    <p className='right'>{this.getMortalityRate()}%</p>
+                                </div>
                             </Typography>
                         </Tooltip>
                         <Tooltip title='Confirmed Cases / World Population'>
-                            <Typography variant="body1" color="textSecondary" component="p">
-                                Global Population Infected: {this.getPopulationInfected()}%
+                            <Typography variant="body1" color="textSecondary" component="div">
+                                <div className='cont'>
+                                    <p className='left'>Global Population Infected: </p>
+                                    <p className='right'>{this.getPopulationInfected()}%</p>
+                                </div>
                             </Typography>
                         </Tooltip>
                         <Tooltip title='Recovered / Confirmed Cases'>
-                            <Typography variant="body1" color="textSecondary" component="p">
-                                Recovery Rate: {this.getRecoveryRate()}%
+                            <Typography variant="body1" color="textSecondary" component="div">
+                                <div className='cont'>
+                                    <p className='left'>Recovery Rate: </p>
+                                    <p className='right'>{this.getRecoveryRate()}%</p>
+                                </div>
                             </Typography>
                         </Tooltip>
                     </CardContent>
