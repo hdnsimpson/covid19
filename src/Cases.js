@@ -56,7 +56,7 @@ class Cases extends React.Component {
         //     config)
         //     .then(response => this.setState({ deaths: response.data[0].data }));
 
-        // // Get Deaths
+        // // Get Recovered
         // axios.get('https://apigw.nubentos.com:443/t/nubentos.com/ncovapi/1.0.0/recovered',
         //     config)
         //     .then(response => this.setState({ recovered: response.data[0].data }));
