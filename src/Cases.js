@@ -23,7 +23,6 @@ class Cases extends React.Component {
 
     // Load covid data upon page load
     componentDidMount() {
-        console.log(process.env.TOKEN);
         // Get Access token on page load
         fetch("https://cors-anywhere.herokuapp.com/https://apigw.nubentos.com:443/token?grant_type=client_credentials", {
             "method": "POST",
